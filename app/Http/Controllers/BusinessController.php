@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Business;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use App\Http\Requests\BusinessRequest;
 use Illuminate\Support\Facades\Bus;
 use Validator;
 use Session;
@@ -37,18 +38,11 @@ class BusinessController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\BusinessRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BusinessRequest $request)
     {
-        $request->validate([
-            'name'       => 'required|string|min:10|max:50',
-            'price'      => 'required|integer|between:10000,10000000',
-            //'price'      => " required|regex:/^\d{5,8}(\.\d{0,2})?$/",
-            'city' => 'required'
-        ]);
-
         Business::create($request->all());
 
         return redirect()->route('business.index')
@@ -80,17 +74,12 @@ class BusinessController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\BusinessRequest  $request
      * @param  \App\Models\Business  $business
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Business $business)
+    public function update(BusinessRequest $request, Business $business)
     {
-        $request->validate([
-            'name'       => 'required|string|min:10|max:50',
-            'price'      => 'required|integer|between:10000,10000000',
-            'city' => 'required'
-        ]);
         $business->update($request->all());
 
         return redirect()->route('business.index')
