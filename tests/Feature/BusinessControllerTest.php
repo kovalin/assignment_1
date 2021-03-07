@@ -37,6 +37,17 @@ class BusinessControllerTest extends TestCase
         $model_biz->delete();
     }
 
+    public function test_for_failed_create_business()
+    {
+        $response = $this->post('/business', [
+            'name' => 'Test',
+            'price' => '9999',
+            'city' => ''
+        ]);
+
+        $response->assertSessionHasErrors(['name', 'price', 'city']);
+    }
+
     public function test_it_checks_for_invalid_name()
     {
         $this->postJson('/business', ['name' => ''])
@@ -110,6 +121,25 @@ class BusinessControllerTest extends TestCase
         $response->assertSee(str_repeat("b", 10));
         $response->assertSee(str_repeat("2", 5));
         $response->assertSee('Test2');
+
+        $business->delete();
+    }
+
+
+    public function test_for_failed_update_business()
+    {
+        $business = Business::factory()->create([
+            'name' => str_repeat("a", 10),
+            'price' => str_repeat("1", 5),
+            'city' => 'Test1',
+        ]);
+        $response = $this->put("/business/{$business->id}", [
+            'name' => str_repeat("b", 9),
+            'price' => str_repeat("2", 4),
+            'city' => '',
+        ]);
+
+        $response->assertSessionHasErrors(['name', 'price', 'city']);
 
         $business->delete();
     }

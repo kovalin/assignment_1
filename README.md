@@ -28,9 +28,11 @@ Task is to build a small backend application using Laravel. The application will
 
 * get businesses
 * can create new business
+* test_for_failed_create_business
 * it checks for invalid name
 * it checks for invalid price
 * it checks for invalid city
 * get business
 * update business
+* test_for_failed_update_business
 * delete business
