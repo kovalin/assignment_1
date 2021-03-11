@@ -21,8 +21,8 @@ Task is to build a small backend application using Laravel. The application will
 * get-businesses
 * store-businesses
 * get-business
-* update-businesses
-* delete-businesses
+* update-business
+* delete-business
 
 ### Tests ###
 
