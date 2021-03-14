@@ -38,10 +38,15 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>City:</strong>
-                    <input type="text" name="city" value="{{ $business->city }}" class="form-control" placeholder="City">
-                    @if ($errors->has('city'))
-                        <span class="text-danger">{{ $errors->first('city') }}</span>
-                    @endif
+                    <select name="city_id">
+                        @foreach($cities as $key => $city)
+                            @if ($city->id == $business->city_id)
+                                <option value="{{ $city->id }}" selected>{{ $city->name }}</option>
+                            @else
+                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

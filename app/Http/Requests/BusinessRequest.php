@@ -26,7 +26,7 @@ class BusinessRequest extends FormRequest
         return [
             'name'       => 'required|string|min:10|max:50',
             'price'      => 'required|integer|between:10000,10000000',
-            'city' => 'required'
+            'city_id' => 'required'
         ];
     }
 }

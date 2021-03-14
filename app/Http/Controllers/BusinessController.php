@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Business;
+use App\Models\City;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use App\Http\Requests\BusinessRequest;
@@ -32,7 +33,8 @@ class BusinessController extends Controller
      */
     public function create()
     {
-        return view('business.create');
+        $cities = City::all();
+        return view('business.create', compact('cities'));
     }
 
     /**
@@ -68,7 +70,8 @@ class BusinessController extends Controller
      */
     public function edit(Business $business)
     {
-        return view('business.edit', compact('business'));
+        $cities = City::all();
+        return view('business.edit', compact('business', 'cities'));
     }
 
     /**

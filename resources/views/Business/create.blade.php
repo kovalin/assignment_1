@@ -37,7 +37,11 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>City:</strong>
-                    <input type="text" name="city" class="form-control" placeholder="city">
+                    <select name="city_id">
+                    @foreach($cities as $key => $city)
+                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                    @endforeach
+                    </select>
                     @if ($errors->has('city'))
                         <span class="text-danger">{{ $errors->first('city') }}</span>
                     @endif

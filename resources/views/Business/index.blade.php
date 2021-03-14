@@ -32,7 +32,7 @@
                 <td>{{ $business->id }}</td>
                 <td>{{ $business->name }}</td>
                 <td>{{ $business->price }}</td>
-                <td>{{ $business->city }}</td>
+                <td>{{ @$business->city->name }}</td>
                 <td>
                     <form action="{{ route('business.destroy', $business->id) }}" method="POST">
 
